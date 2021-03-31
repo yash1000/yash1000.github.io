@@ -174,6 +174,44 @@ input, select, textarea {
 		  animation: none;
 		}
 	  }
+	  .tooltip {
+		position:relative; /* making the .tooltip span a container for the tooltip text */
+	  }
+	  .tooltip:before {
+		content: attr(data-text); /* here's the magic */
+		position:absolute;
+		
+		/* vertically center */
+		top:50%;
+		transform:translateY(-50%);
+		
+		/* move to right */
+		left:100%;
+		margin-left:15px; /* and add a small left margin */
+		
+		/* basic styles */
+		width:90%;
+		padding:10px;
+		border-radius:10px;
+		background:#000;
+		color: #fff;
+		text-align:center;
+	  
+		display:none; /* hide by default */
+	  }
+	  .tooltip:hover:before {
+		display:block;
+		z-index: 10;
+	  }
+	  .tooltip.left:before {
+		/* reset defaults */
+		left:initial;
+		margin:initial;
+	  
+		/* set new values */
+		right:100%;
+		margin-right:15px;
+	  }
 	  
 	a {
 		-moz-transition: color .2s ease-in-out;
@@ -328,7 +366,28 @@ input, select, textarea {
 		}
 
 		@media screen and (max-width: 980px) {
-
+			.tooltip:before {
+				content: ''; /* here's the magic */
+				position:absolute;
+				
+				/* vertically center */
+				top:0%;
+				transform:translateY(-0%);
+				
+				/* move to right */
+				left:0%;
+				margin-left:0; /* and add a small left margin */
+				
+				/* basic styles */
+				width:0%;
+				padding:0px;
+				border-radius:0px;
+				background:#000;
+				color: #fff;
+				text-align:center;
+			  
+				display:none; /* hide by default */
+			  }
 			.container {
 				width: 100%;
 			}
